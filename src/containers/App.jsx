@@ -2,6 +2,8 @@ import { useState } from "react";
 import Dropdown from "../components/Dropdown";
 
 function App() {
+  // const apiKey = import.meta.env.VITE_URL;
+  // console.log(apiKey)
   return (
     <>
       <div className="flex flex-col justify-center items-center">
