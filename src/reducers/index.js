@@ -6,7 +6,21 @@ import {
 } from "../actions/index";
 
 const initialState = {
-  data: null,
+  data: {
+    location: null,
+    current: null,
+    forecast: {
+      forecastday: [
+        {
+          date: null,
+          date_epoch: null,
+          day: null,
+          astro: null,
+          hour: null,
+        },
+      ],
+    },
+  },
   loading: false,
   error: null,
 };
@@ -22,7 +36,13 @@ const weatherReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
-        data: action.payload,
+        data: {
+          location: { ...action.payload.location },
+          current: { ...action.payload.current },
+          forecast: {
+            forecastday: [...action.payload.forecast.forecastday],
+          },
+        },
         error: null,
       };
     case FETCH_WEATHER_FAILURE:

@@ -13,7 +13,7 @@ function* fetchWeather(action) {
     const response = yield call(axios.get, `${apiUrl}${query}`);
     yield put(fetchWeatherSuccess(response.data));
   } catch (error) {
-    yield put(fetchWeatherFailure(error.message));
+    yield put(fetchWeatherFailure(error));
   }
 }
 

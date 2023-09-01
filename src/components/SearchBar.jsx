@@ -9,12 +9,12 @@ const SearchBar = () => {
 
   const handleSearch = (e) => {
     setQuery(e.target.value);
-    console.log(4);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(fetchWeatherRequest({ query: query }));
+    setQuery('')
   };
 
   return (
