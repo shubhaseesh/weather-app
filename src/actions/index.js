@@ -1,17 +1,18 @@
-export const REQUEST_CITIES = "REQUEST_CITIES";
-export const RECEIVE_CITIES = "RECEIVE_CITIES";
+export const FETCH_WEATHER_REQUEST = 'FETCH_WEATHER_REQUEST';
+export const FETCH_WEATHER_SUCCESS = 'FETCH_WEATHER_SUCCESS';
+export const FETCH_WEATHER_FAILURE = 'FETCH_WEATHER_FAILURE';
 
-export function requestCities(cities) {
-  return {
-    type: REQUEST_CITIES,
-    cities,
-  };
-}
+export const fetchWeatherRequest = (query) => ({
+  type: FETCH_WEATHER_REQUEST,
+  payload: query,
+});
 
-export function receiveCities(cities, payload) {
-  return {
-    type: RECEIVE_CITIES,
-    cities,
-    payload,
-  };
-}
+export const fetchWeatherSuccess = (data) => ({
+  type: FETCH_WEATHER_SUCCESS,
+  payload: data,
+});
+
+export const fetchWeatherFailure = (error) => ({
+  type: FETCH_WEATHER_FAILURE,
+  payload: error,
+});
