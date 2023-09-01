@@ -1,34 +1,43 @@
-import { combineReducers } from 'redux'
-import {RECEIVE_CITIES, REQUEST_CITIES} from '../actions'
+import { combineReducers } from "redux";
+import {
+  FETCH_WEATHER_REQUEST,
+  FETCH_WEATHER_SUCCESS,
+  FETCH_WEATHER_FAILURE,
+} from "../actions/index";
 
+const initialState = {
+  data: null,
+  loading: false,
+  error: null,
+};
 
-
-function getCities(
-  state = {
-    isFetching: false,
-    items: [],
-  },
-  action,
-) {
+const weatherReducer = (state = initialState, action) => {
   switch (action.type) {
-    case REQUEST_CITIES:
-      return { ...state, isFetching: true }
-
-    case RECEIVE_CITIES:
+    case FETCH_WEATHER_REQUEST:
       return {
         ...state,
-        isFetching: false,
-        items: action.posts,
-      }
+        loading: true,
+      };
+    case FETCH_WEATHER_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        data: action.payload,
+        error: null,
+      };
+    case FETCH_WEATHER_FAILURE:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
     default:
-      return state
+      return state;
   }
-}
-
-
+};
 
 const rootReducer = combineReducers({
-  getCities,
-})
+  weatherReducer,
+});
 
-export default rootReducer
+export default rootReducer;
