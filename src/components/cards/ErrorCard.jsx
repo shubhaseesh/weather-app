@@ -18,9 +18,11 @@ const ErrorCard = ({ error }) => {
       {(ref) => (
         <div
           ref={ref}
-          className="bg-red-100 border border-red-400 text-red-700 px-4 py-2 rounded-lg shadow-lg"
+          className="bg-red-100 border border-red-400 text-red-700 px-4 py-2 rounded shadow"
         >
-          <h2 className="text-xl font-semibold mb-2">Error</h2>
+          <h2 className="text-xl font-semibold mb-2">
+            Error Please Check The Details Entered!
+          </h2>
           <p>
             <strong>Name:</strong> {error.name}
           </p>

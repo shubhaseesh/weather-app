@@ -5,30 +5,34 @@ import WeatherCard from "./cards/WeatherCard";
 import ErrorCard from "./cards/ErrorCard";
 
 const Weather = () => {
-  const {
-    data: {
-      location,
-      current,
-      forecast: { forecastday },
-    },
-    loading,
-    error,
-  } = useSelector((state) => state.weatherReducer);
+  const weatherInfo = useSelector((state) => state.weatherReducer);
+  if (weatherInfo && weatherInfo.data && weatherInfo.data.location) {
+    const {
+      data: {
+        location,
+        current,
+        forecast: { forecastday },
+      },
+      error,
+      loading,
+    } = weatherInfo;
 
-  return (
-    <div className="">
-      {error && <ErrorCard error={error} />}
-      {!error && loading && <Loader />}
-      {!error && !loading && forecastday && (
-        <WeatherCard
-          location={location}
-          current={current}
-          forecastday={forecastday}
-        />
-      )}
-      {!error && !loading && !forecastday && <p>Please search any city</p>}
-    </div>
-  );
+    return (
+      <div className="flex justify-center items-center w-full ">
+        {error ? (
+          <ErrorCard error={error} />
+        ) : loading ? (
+          <Loader />
+        ) : (
+          <WeatherCard
+            location={location}
+            current={current}
+            forecastday={forecastday}
+          />
+        )}
+      </div>
+    );
+  }
 };
 
 export default Weather;

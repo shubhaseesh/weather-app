@@ -1,17 +1,24 @@
+import { useEffect } from "react";
 import SearchBar from "../components/SearchBar";
-import WeatherComponent from "../components/Weather";
+import Weather from "../components/Weather";
+import { useDispatch } from "react-redux";
+import { fetchWeatherRequest } from "../actions";
 
 function App() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchWeatherRequest({ query: "india" }));
+  }, [dispatch]);
   return (
-    <div className="flex flex-col h-screen">
-      <div className="flex items-center justify-around w-full h-[100px] bg-slate-100 shadow-lg">
-        <div className="text-xl font-semibold text-gray-700">
+    <div className="flex flex-col min-h-screen">
+      <div className="flex items-center justify-between p-4 sm:p-6 md:p-8 lg:p-10 xl:p-12 h-16 sm:h-20 bg-black shadow-lg">
+        <div className="text-xl sm:text-2xl font-semibold text-slate-100">
           <h1>Weather App</h1>
         </div>
         <SearchBar />
       </div>
-      <div className="flex flex-col justify-center h-full items-center m-10">
-        <WeatherComponent />
+      <div className="flex flex-col flex-grow justify-center items-center">
+        <Weather />
       </div>
     </div>
   );
