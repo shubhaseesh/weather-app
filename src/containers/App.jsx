@@ -17,7 +17,7 @@ function App() {
         </div>
         <SearchBar />
       </div>
-      <div className="flex flex-col flex-grow justify-center items-center">
+      <div className="flex flex-col flex-grow justify-center items-center px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 py-8">
         <Weather />
       </div>
     </div>

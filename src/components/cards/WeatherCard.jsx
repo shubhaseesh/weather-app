@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import DetailsCard from "./DetailsCard";
 
 const WeatherCard = ({ location, current, forecastday }) => {
   if (location.name && current.temp_c && forecastday) {
@@ -30,6 +31,7 @@ const WeatherCard = ({ location, current, forecastday }) => {
         is_sun_up,
       },
     } = forecastday[0];
+
     return (
       <div className="container mx-auto p-4">
         <div className="flex items-center mb-2">
@@ -45,91 +47,41 @@ const WeatherCard = ({ location, current, forecastday }) => {
           </div>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-3">
-          {/* Row 1 */}
-          <div className="inline-flex items-center bg-gray-100 p-4">
-            <p className="font-semibold mr-2">Current Temprature:</p>
-            <div>{temp_c}</div>
-          </div>
-          <div className="inline-flex items-center bg-gray-100 p-4">
-            <p className="font-semibold mr-2">Min Temperature:</p>
-            <div>{mintemp_c}°C</div>
-          </div>
-          <div className="inline-flex items-center bg-gray-100 p-4">
-            <p className="font-semibold mr-2">Average Temperature:</p>
-            <div>{avgtemp_c}°C</div>
-          </div>
-          <div className="inline-flex items-center bg-gray-100 p-4">
-            <p className="font-semibold mr-2">Max Wind Speed:</p>
-            <div>{maxwind_mph} mph</div>
-          </div>
-          {/* Row 2 */}
-          <div className="inline-flex items-center bg-gray-100 p-4">
-            <p className="font-semibold mr-2">Total Precipitation:</p>
-            <div>{totalprecip_mm} mm</div>
-          </div>
-          <div className="inline-flex items-center bg-gray-100 p-4">
-            <p className="font-semibold mr-2">Average Visibility:</p>
-            <div>{avgvis_miles} miles</div>
-          </div>
-          <div className="inline-flex items-center bg-gray-100 p-4">
-            <p className="font-semibold mr-2">Average Humidity:</p>
-            <div>{avghumidity}%</div>
-          </div>
-          <div className="inline-flex items-center bg-gray-100 p-4">
-            <p className="font-semibold mr-2">Will it Rain:</p>
-            <div>{daily_will_it_rain ? "Yes" : "No"}</div>
-          </div>
-          {/* Row 3 */}
-          <div className="inline-flex items-center bg-gray-100 p-4">
-            <p className="font-semibold mr-2">Chance of Rain:</p>
-            <div>{daily_chance_of_rain}%</div>
-          </div>
-          <div className="inline-flex items-center bg-gray-100 p-4">
-            <p className="font-semibold mr-2">UV Index:</p>
-            <div>{uv}</div>
-          </div>
-          <div className="inline-flex items-center bg-gray-100 p-4">
-            <p className="font-semibold mr-2">Max Temperature:</p>
-            <div>{maxtemp_c}°C</div>
-          </div>
-          <div className="inline-flex items-center bg-gray-100 p-4">
-            <p className="font-semibold mr-2">Sunrise:</p>
-            <div>{sunrise}</div>
-          </div>
-          {/* Row 4 */}
-          <div className="inline-flex items-center bg-gray-100 p-4">
-            <p className="font-semibold mr-2">Sunset:</p>
-            <div>{sunset}</div>
-          </div>
-          <div className="inline-flex items-center bg-gray-100 p-4">
-            <p className="font-semibold mr-2">Moonrise:</p>
-            <div>{moonrise}</div>
-          </div>
-          <div className="inline-flex items-center bg-gray-100 p-4">
-            <p className="font-semibold mr-2">Moonset:</p>
-            <div>{moonset}</div>
-          </div>
-          <div className="inline-flex items-center bg-gray-100 p-4">
-            <p className="font-semibold mr-2">Moon Phase:</p>
-            <div>{moon_phase}</div>
-          </div>
-          {/* Row 5 */}
-          <div className="inline-flex items-center bg-gray-100 p-4">
-            <p className="font-semibold mr-2">Moon Illumination:</p>
-            <div>{moon_illumination}%</div>
-          </div>
-          <div className="inline-flex items-center bg-gray-100 p-4">
-            <p className="font-semibold mr-2">Is Moon Up:</p>
-            <div>{is_moon_up ? "Yes" : "No"}</div>
-          </div>
-          <div className="inline-flex items-center bg-gray-100 p-4">
-            <p className="font-semibold mr-2">Is Sun Up:</p>
-            <div>{is_sun_up ? "Yes" : "No"}</div>
-          </div>
-          <div className="inline-flex items-center bg-gray-100 p-4">
-            <p className="font-semibold mr-2">Moon Phase:</p>
-            <div>{moon_phase}</div>
-          </div>
+          <DetailsCard label="Current Temperature" value={`${temp_c}°C`} />
+          <DetailsCard label="Min Temperature" value={`${mintemp_c}°C`} />
+          <DetailsCard label="Average Temperature" value={`${avgtemp_c}°C`} />
+          <DetailsCard label="Max Wind Speed" value={`${maxwind_mph} mph`} />
+          <DetailsCard
+            label="Total Precipitation"
+            value={`${totalprecip_mm} mm`}
+          />
+          <DetailsCard
+            label="Average Visibility"
+            value={`${avgvis_miles} miles`}
+          />
+          <DetailsCard label="Average Humidity" value={`${avghumidity}%`} />
+          <DetailsCard
+            label="Will it Rain"
+            value={daily_will_it_rain ? "Yes" : "No"}
+          />
+          <DetailsCard
+            label="Chance of Rain"
+            value={`${daily_chance_of_rain}%`}
+          />
+          <DetailsCard label="UV Index" value={uv} />
+          <DetailsCard label="Max Temperature" value={`${maxtemp_c}°C`} />
+          <DetailsCard label="Sunrise" value={sunrise} />
+          <DetailsCard label="Sunset" value={sunset} />
+          <DetailsCard label="Moonrise" value={moonrise} />
+          <DetailsCard label="Moonset" value={moonset} />
+          <DetailsCard label="Moon Phase" value={moon_phase} />
+          <DetailsCard
+            label="Moon Illumination"
+            value={`${moon_illumination}%`}
+          />
+          <DetailsCard label="Is Moon Up" value={is_moon_up ? "Yes" : "No"} />
+          <DetailsCard label="Is Sun Up" value={is_sun_up ? "Yes" : "No"} />
+          <DetailsCard label="Moon Phase" value={moon_phase} />
         </div>
       </div>
     );
