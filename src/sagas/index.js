@@ -8,8 +8,11 @@ import {
 
 function* fetchWeather(action) {
   try {
+    let city = "india";
     const { query } = action.payload;
-    let city = query.toLowerCase()
+    if (query) {
+      city = query.toLowerCase();
+    }
     const apiUrl = import.meta.env.VITE_SOURCE_URL;
     const response = yield call(axios.get, `${apiUrl}${city}`);
     yield put(fetchWeatherSuccess(response.data));
