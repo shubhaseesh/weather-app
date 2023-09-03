@@ -18,11 +18,11 @@ const SearchBar = () => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <div className="flex justify-end">
-        <div className="relative">
+      <div className="flex sm:flex-row sm:justify-end">
+        <div className="relative sm:mb-0">
           <input
             type="text"
-            className="w-64 py-2 pl-10 pr-4 rounded-md focus:outline-none focus:border focus:border-blue-300"
+            className="w-full sm:w-64 py-2 pl-10 pr-4 rounded-md focus:outline-none focus:border focus:border-blue-300"
             placeholder="Search city"
             value={query}
             onChange={handleSearch}
@@ -30,7 +30,7 @@ const SearchBar = () => {
         </div>
         <button
           type="submit"
-          className="ml-2 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-300"
+          className="w-full sm:w-auto ml-2 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-300"
         >
           Search
         </button>
