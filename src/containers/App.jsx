@@ -12,8 +12,10 @@ function App() {
   return (
     <div className="flex flex-col min-h-screen">
       <div className="flex items-center justify-between p-4 sm:p-6 md:p-8 lg:p-10 xl:p-12 h-16 sm:h-20 bg-black shadow-lg">
-        <div className="text-xl sm:text-2xl font-semibold text-slate-100">
-          <h1>Weather App</h1>
+        <div className="text-slate-100 ml-4">
+          <p className="whitespace-nowrap text-sm font-semibold md:text-xl sm:whitespace-normal text-white">
+            Weather App
+          </p>
         </div>
         <SearchBar />
       </div>
