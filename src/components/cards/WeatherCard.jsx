@@ -35,17 +35,26 @@ const WeatherCard = ({ location, current, forecastday }) => {
     return (
       <div className="container mx-auto p-4">
         <div className="flex items-center mb-2">
-          <div className="flex items-center justify-center p-2">
-            <p className="text-xl font-semibold">
-              Forecast for {name}/{region}
+          <div className="flex items-center justify-center py-4">
+            <p className="text-2xl font-semibold text-gray-700 hover:text-gray-900 transform hover:scale-105 transition duration-300 ease-in-out">
+              Forecast for{" "}
+              <span className="text-xl font-bold">
+                {name} - {region}
+              </span>
             </p>
           </div>
-          <div className="inline-flex items-center">
-            <p className="font-semibold mx-2">Condition:</p>
-            <div>{text}</div>
-            <img src={icon} alt="Weather Icon" className="w-16 h-16 mt-2" />
+          <div className="flex items-center justify-center ml-4">
+            <div className="flex justify-center items-center ml-4 mt-1">
+              <p className="font-semibold">Condition - {text}</p>
+            </div>
+            <img
+              src={icon}
+              alt="Weather Icon"
+              className="w-16 h-16 hover:rotate-45 transition-transform duration-300 ease-in-out"
+            />
           </div>
         </div>
+
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-3">
           <DetailsCard label="Current Temperature" value={`${temp_c}°C`} />
           <DetailsCard label="Min Temperature" value={`${mintemp_c}°C`} />
