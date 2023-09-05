@@ -8,9 +8,10 @@ import {
 
 function* fetchWeather(action) {
   try {
-    let city = "india";
     const { query } = action.payload;
-    city = query.toLowerCase();
+    if (!query)
+      throw new Error("Please enter a city name. City name cannot be empty.");
+    let city = query.toLowerCase();
     const apiUrl = import.meta.env.VITE_SOURCE_URL;
     const response = yield call(axios.get, `${apiUrl}${city}`);
     yield put(fetchWeatherSuccess(response.data));

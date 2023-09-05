@@ -5,24 +5,13 @@ const ErrorCard = ({ error }) => {
   if (!error) return null;
   return (
     <div className="transition-opacity duration-500 opacity-100">
-      <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-2 rounded shadow">
-        <h2 className="text-xl font-semibold mb-2">
-          Error Please Check The Details Entered!
-        </h2>
+      <div className="text-red-700 px-4 py-2">
         <p>
-          <strong>Name:</strong> {error.name}
+          {error.message !==
+          "Please enter a city name. City name cannot be empty."
+            ? "The city could not be found. Please enter a valid city name."
+            : error.message}
         </p>
-        <p>
-          <strong>Message:</strong> {error.message}
-        </p>
-        <p>
-          <strong>Code:</strong> {error.code}
-        </p>
-        {error.response && (
-          <p>
-            <strong>Status:</strong> {error.response.status}
-          </p>
-        )}
       </div>
     </div>
   );

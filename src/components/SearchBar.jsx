@@ -13,7 +13,7 @@ const SearchBar = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(fetchWeatherRequest({ query }));
-    setQuery("");
+    // setQuery("");
   };
 
   return (
