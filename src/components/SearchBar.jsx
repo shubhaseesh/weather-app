@@ -1,8 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { fetchWeatherRequest } from "../actions/index";
 
 const SearchBar = () => {
+  const inputRef = useRef(null);
+  useEffect(() => {
+    inputRef.current.focus();
+  }, []);
   const [query, setQuery] = useState("");
   const dispatch = useDispatch();
 
@@ -25,6 +29,7 @@ const SearchBar = () => {
             className="w-full py-2 pl-4 pr-4 rounded focus:outline-none focus:border focus:border-blue-300"
             placeholder="Search City"
             value={query}
+            ref={inputRef}
             onChange={handleSearch}
           />
         </div>
