@@ -7,6 +7,7 @@ const WeatherCard = ({ location, current, forecastday }) => {
     const { name, region } = location;
     const { temp_c } = current;
     const {
+      date,
       day: {
         maxtemp_c,
         mintemp_c,
@@ -31,7 +32,6 @@ const WeatherCard = ({ location, current, forecastday }) => {
         is_sun_up,
       },
     } = forecastday[0];
-
     return (
       <div className="container mx-auto p-4">
         <div className="flex items-center mb-4">
@@ -53,6 +53,7 @@ const WeatherCard = ({ location, current, forecastday }) => {
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-3">
           <DetailsCard label="Current Temperature" value={`${temp_c}°C`} />
+          <DetailsCard label="Date" value={date} />
           <DetailsCard label="Min Temperature" value={`${mintemp_c}°C`} />
           <DetailsCard label="Average Temperature" value={`${avgtemp_c}°C`} />
           <DetailsCard label="Max Wind Speed" value={`${maxwind_mph} mph`} />
@@ -67,7 +68,7 @@ const WeatherCard = ({ location, current, forecastday }) => {
           <DetailsCard label="Average Humidity" value={`${avghumidity}%`} />
           <DetailsCard
             label="Will it Rain"
-            value={daily_will_it_rain ? "Yes" : "No"}
+            value={daily_will_it_rain === 1 ? "Yes" : "No"}
           />
           <DetailsCard
             label="Chance of Rain"
@@ -84,9 +85,11 @@ const WeatherCard = ({ location, current, forecastday }) => {
             label="Moon Illumination"
             value={`${moon_illumination}%`}
           />
-          <DetailsCard label="Is Moon Up" value={is_moon_up ? "Yes" : "No"} />
+          <DetailsCard
+            label="Is Moon Up"
+            value={is_moon_up ? "Yes" : "No"}
+          />
           <DetailsCard label="Is Sun Up" value={is_sun_up ? "Yes" : "No"} />
-          <DetailsCard label="Moon Phase" value={moon_phase} />
         </div>
       </div>
     );
