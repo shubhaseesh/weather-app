@@ -1,12 +1,16 @@
 import React, { useState, useRef, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { fetchWeatherRequest } from "../actions/index";
 
 const SearchBar = () => {
+  const { error } = useSelector((state) => state.weatherReducer);
   const inputRef = useRef(null);
   useEffect(() => {
     inputRef.current.focus();
-  }, []);
+    if (error) {
+      inputRef.current.select();
+    }
+  }, [error]);
   const [query, setQuery] = useState("");
   const dispatch = useDispatch();
 
