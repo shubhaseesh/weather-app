@@ -3,6 +3,7 @@ import SearchBar from "../components/SearchBar";
 import Weather from "../components/Weather";
 import { useDispatch } from "react-redux";
 import { fetchWeatherRequest } from "../actions";
+import WeatherIcon from "../components/Icons/WeatherIcon";
 
 function App() {
   const dispatch = useDispatch();
@@ -12,10 +13,11 @@ function App() {
   return (
     <div className="flex flex-col min-h-screen">
       <div className="flex items-center justify-between p-4 sm:p-6 md:p-8 lg:p-10 xl:p-12 h-16 sm:h-20 bg-black shadow-lg">
-        <div className="text-slate-100 ml-4">
+        <div className="flex flex-row items-center gap-2 text-slate-100 ml-4">
           <p className="whitespace-nowrap text-sm font-semibold md:text-xl sm:whitespace-normal text-white">
             Weather App
           </p>
+          <WeatherIcon />
         </div>
         <SearchBar />
       </div>
