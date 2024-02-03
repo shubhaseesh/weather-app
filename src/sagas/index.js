@@ -13,7 +13,8 @@ function* fetchWeather(action) {
       throw new Error("Please enter a city name. City name cannot be empty.");
     let city = query.toLowerCase();
     const apiUrl = import.meta.env.VITE_SOURCE_URL;
-    const response = yield call(axios.get, `${apiUrl}${city}`);
+    const key = import.meta.env.VITE_WEATHER_API_KEY;
+    const response = yield call(axios.get, `${apiUrl}?key=${key}&q=${city}`);
     yield put(fetchWeatherSuccess(response.data));
   } catch (error) {
     yield put(fetchWeatherFailure(error));

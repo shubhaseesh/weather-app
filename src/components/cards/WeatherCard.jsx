@@ -128,7 +128,7 @@ WeatherCard.propTypes = {
         moonrise: PropTypes.string,
         moonset: PropTypes.string,
         moon_phase: PropTypes.string,
-        moon_illumination: PropTypes.string,
+        moon_illumination: PropTypes.number,
         is_moon_up: PropTypes.number,
         is_sun_up: PropTypes.number,
       }),
