@@ -1,29 +1,37 @@
 import { useEffect } from "react";
 import SearchBar from "../components/SearchBar";
 import Weather from "../components/Weather";
-import { useDispatch } from "react-redux";
-import { fetchWeatherRequest } from "../actions";
-import WeatherIcon from "../components/Icons/WeatherIcon";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchGeoLocationRequest, fetchWeatherRequest } from "../actions";
 
 function App() {
   const dispatch = useDispatch();
+
+  const { data, error, loading } = useSelector(
+    (state) => state.geolocationReducer
+  );
+
   useEffect(() => {
-    dispatch(fetchWeatherRequest({ query: "india" }));
+    dispatch(fetchGeoLocationRequest());
   }, [dispatch]);
+
+  useEffect(() => {
+    if (error) {
+      dispatch(fetchWeatherRequest({ query: "india" }));
+    } else if (data) {
+      dispatch(fetchWeatherRequest({ query: data.geoIpData.cityName }));
+    }
+  }, [dispatch, data, error]);
+
   return (
-    <div className="flex flex-col min-h-screen">
-      <div className="flex items-center justify-between p-4 sm:p-6 md:p-8 lg:p-10 xl:p-12 h-16 sm:h-20 bg-black shadow-lg">
-        <div className="flex flex-row items-center gap-2 text-slate-100 ml-4">
-          <p className="whitespace-nowrap text-sm font-semibold md:text-xl sm:whitespace-normal text-white">
-            Weather App
-          </p>
-          <WeatherIcon />
+    <div className="flex flex-col h-screen w-full">
+      <div className="flex items-center justify-between p-4 sm:p-6 md:p-8 lg:p-10 xl:p-12 h-16 sm:h-20 bg-matt shadow-lg w-100 bg-indigo-500">
+        <div className="flex flex-row items-center gap-2 font-semibold text-lg text-white whitespace-nowrap ml-4">
+          Weather App
         </div>
         <SearchBar />
       </div>
-      <div className="flex flex-col flex-grow justify-center items-center px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 py-8">
-        <Weather />
-      </div>
+      <Weather loading={loading} />
     </div>
   );
 }

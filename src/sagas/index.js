@@ -4,6 +4,9 @@ import {
   FETCH_WEATHER_REQUEST,
   fetchWeatherSuccess,
   fetchWeatherFailure,
+  FETCH_GEO_LOCATION_REQUEST,
+  fetchGeoLocationSuccess,
+  fetchGeoLocationFailure,
 } from "../actions/index";
 
 function* fetchWeather(action) {
@@ -21,12 +24,25 @@ function* fetchWeather(action) {
   }
 }
 
+function* fetchGeolocation() {
+  try {
+    const response = yield call(
+      axios.get,
+      `https://ipranger.eportal.click/api/v1.0.4/track`
+    );
+    yield put(fetchGeoLocationSuccess(response.data));
+  } catch (error) {
+    yield put(fetchGeoLocationFailure(error));
+  }
+}
 function* weatherSaga() {
   yield takeLatest(FETCH_WEATHER_REQUEST, fetchWeather);
 }
-
+function* geolocationSaga() {
+  yield takeLatest(FETCH_GEO_LOCATION_REQUEST, fetchGeolocation);
+}
 function* rootSaga() {
-  yield all([weatherSaga()]);
+  yield all([weatherSaga(), geolocationSaga()]);
 }
 
 export default rootSaga;
