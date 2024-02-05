@@ -14,7 +14,7 @@ const SearchBar = () => {
   const [query, setQuery] = useState("");
   const dispatch = useDispatch();
 
-  const handleSearch = (e) => {
+  const handleChange = (e) => {
     setQuery(e.target.value);
   };
 
@@ -25,23 +25,32 @@ const SearchBar = () => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <div className="flex sm:flex-row sm:justify-end">
-        <div className="relative ml-8 sm:mb-0">
-          <input
-            type="text"
-            className="py-1 pl-4 pr-4 rounded focus:outline-none w-40 sm:w-full"
-            placeholder="Search City"
-            value={query}
-            ref={inputRef}
-            onChange={handleSearch}
-          />
-        </div>
-        <button
-          type="submit"
-          className="w-40sm:w-64 ml-2 px-4 py-1 bg-pink-500 text-white rounded focus:outline-none focus:ring focus:border-green-400"
-        >
-          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+      <div className="relative mx-auto text-gray-600">
+        <input
+          ref={inputRef}
+          onChange={handleChange}
+          className="border-1 border-gray-300 bg-white h-10 px-2 sm:px-4 sm:pr-16 rounded-md text-sm focus:outline-none"
+          type="search"
+          name="search"
+          placeholder="Search city"
+          required
+        />
+        <button type="submit" className="absolute right-0 top-0 mt-3 mr-4">
+          <svg
+            className="text-gray-600 h-4 w-4 fill-current"
+            xmlns="http://www.w3.org/2000/svg"
+            xmlnsXlink="http://www.w3.org/1999/xlink"
+            version="1.1"
+            id="Capa_1"
+            x="0px"
+            y="0px"
+            viewBox="0 0 56.966 56.966"
+            style={{ enableBackground: "new 0 0 56.966 56.966" }}
+            xmlSpace="preserve"
+            width="512px"
+            height="512px"
+          >
+            <path d="M55.146,51.887L41.588,37.786c3.486-4.144,5.396-9.358,5.396-14.786c0-12.682-10.318-23-23-23s-23,10.318-23,23  s10.318,23,23,23c4.761,0,9.298-1.436,13.177-4.162l13.661,14.208c0.571,0.593,1.339,0.92,2.162,0.92  c0.779,0,1.518-0.297,2.079-0.837C56.255,54.982,56.293,53.08,55.146,51.887z M23.984,6c9.374,0,17,7.626,17,17s-7.626,17-17,17  s-17-7.626-17-17S14.61,6,23.984,6z" />
           </svg>
         </button>
       </div>

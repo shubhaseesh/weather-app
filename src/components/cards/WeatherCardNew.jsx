@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import WeatherDetailsCard from "./WeatherDetailsCard";
 import DetailsCard from "./DetailsCard";
-
+import { IoLocationSharp } from "react-icons/io5";
 function WeatherCardNew({ location, current, forecastday }) {
   const {
     date,
@@ -33,12 +33,15 @@ function WeatherCardNew({ location, current, forecastday }) {
         <div className="flex flex-row justify-between content-center gap-x-2">
           <div className="flex flex-row justify-between gap-10 w-full">
             <div className="flex flex-col">
-              <div className="flex flex-row w-100 gap-1 text-lg whitespace-nowrap">
+              <div className="flex flex-row w-100 items-center gap-1 text-lg whitespace-nowrap">
+                <IoLocationSharp />
                 <p>
-                  {location.name}&#x2C; {location.country}
+                  {location.name}&#x2C;
+                  {`${location.region ? ` ${location.region},` : ""} `}
+                  {location.country}
                 </p>
               </div>
-              <div className="whitespace-nowrap text-sm">
+              <div className="whitespace-nowrap text-sm px-1">
                 {current.condition.text}
               </div>
             </div>
