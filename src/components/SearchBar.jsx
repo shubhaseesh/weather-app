@@ -29,15 +29,15 @@ const SearchBar = () => {
         <input
           ref={inputRef}
           onChange={handleChange}
-          className="border-1 border-gray-300 bg-white h-10 px-2 sm:px-4 sm:pr-16 rounded-md text-sm focus:outline-none"
+          className="border-1 border-gray-300 bg-white h-8 px-2 sm:px-4 sm:pr-16 rounded text-sm focus:outline-none"
           type="search"
           name="search"
           placeholder="Search city"
           required
         />
-        <button type="submit" className="absolute right-0 top-0 mt-3 mr-4">
+        <button type="submit" className="absolute right-0 top-0 mt-2.5 mr-4">
           <svg
-            className="text-gray-600 h-4 w-4 fill-current"
+            className="text-gray-600 h-3 w-4 fill-current"
             xmlns="http://www.w3.org/2000/svg"
             xmlnsXlink="http://www.w3.org/1999/xlink"
             version="1.1"
